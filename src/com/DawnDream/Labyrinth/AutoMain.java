@@ -1,7 +1,9 @@
 package com.DawnDream.Labyrinth;
 
 import com.DawnDream.Labyrinth.api.Auto;
-
+/**
+ * @author DawnDream
+ * */
 public class AutoMain {
     public static void main(String[] args) {
         boolean map[][] = {
