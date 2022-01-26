@@ -1,19 +1,40 @@
 package com.DawnDream.Labyrinth;
 
 import com.DawnDream.Labyrinth.api.Auto;
+import com.DawnDream.Labyrinth.api.Labyrinth;
+
 /**
  * @author DawnDream
  * */
 public class AutoMain {
+    private static int L = 10;
+    private static int in_x , in_y , out_x , out_y;
     public static void main(String[] args) {
-        boolean map[][] = {
-                {false , false , false , false , false},
-                {false , true  , false , true  , false},
-                {false , true  , true  , true  , false},
-                {false , true  , false , true  , true  , false},
-                {false , true  , true  , true  , false},
-                {false , false , false , false , false}};
-        Auto auto = new Auto(map , 1 , 1  , 4 ,  3);
+        Labyrinth labyrinth = new Labyrinth(L ,1);
+        int m[][] = labyrinth.getMap();
+        boolean map[][] = new boolean[L + 1][L + 1];
+        for (int i = 0; i <= L - 1; i++) {
+            for (int j = 0; j <= L- 1; j++) {
+                switch (m[j][i]){
+                    case 1:
+                        map[j][i] = true;
+                        break;
+                    case 2:
+                        map[j][i] = true;
+                        in_x = i;
+                        in_y = j;
+                        break;
+                    case 3:
+                        map[j][i] = true;
+                        out_x = i;
+                        out_y = j;
+                        break;
+                    default:
+                        map[j][i] = false;
+                }
+            }
+        }
+        Auto auto = new Auto(map , in_x , in_y , out_x , out_y);
         System.out.println(auto.getMin());
     }
 }

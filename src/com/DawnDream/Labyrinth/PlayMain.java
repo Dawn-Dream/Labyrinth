@@ -14,7 +14,7 @@ import java.awt.event.*;
 
 public class PlayMain {
 
-    public static int StartX = 2 , StartY = 2 , L = 50;
+    public static int StartX = 2 , StartY = 2 , L = 10;
     public static int nowX = 0 , nowY = 0;
     public static int nowMap[][];
     public static Paint myPaint;
