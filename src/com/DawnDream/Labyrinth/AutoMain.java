@@ -2,6 +2,11 @@ package com.DawnDream.Labyrinth;
 
 import com.DawnDream.Labyrinth.api.Auto;
 import com.DawnDream.Labyrinth.api.Labyrinth;
+import com.DawnDream.Labyrinth.api.Location;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
 
 /**
  * @author DawnDream
@@ -35,6 +40,6 @@ public class AutoMain {
             }
         }
         Auto auto = new Auto(map , in_x , in_y , out_x , out_y);
-        System.out.println(auto.getMin());
+        System.out.println(auto.getMinLocation().popX() + "  " + auto.getMinLocation().popY());
     }
 }

@@ -1,8 +1,15 @@
 package com.DawnDream.Labyrinth.api;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
 public class Auto {
     public static boolean a[][] , v[][];
     public static int startX , startY , endX , endY , step = 0 , min = 99999999;
+    public static Map location = new HashMap();
+    public static Location nowLocation = new Location();
+
     /**
      * 构造函数
      * @param aMap   权重地图
@@ -26,19 +33,23 @@ public class Auto {
                 vi = false;
             }
         }
+        location.put(min , new Location());
         auto(in_x , in_y , 0);
     }
-
 
     /**
      * 深搜主体
      * */
     private void auto(int dx , int dy , int step){
         v[dx][dy] = true;
-
+        nowLocation.push(dy , dx);
+        System.out.println(dx + " " + dy);
         if (dx == endX && dy == endY) {
             if (step < min) {
                 min = step;
+                location.put(min , nowLocation);
+                nowLocation.popX();
+                nowLocation.popY();
                 return;
             }
         }
@@ -54,7 +65,19 @@ public class Auto {
         }
     }
 
+    /**
+     * 获得最小步数
+     * @return int
+     * */
     public int getMin(){
         return min;
+    }
+
+    /**
+     * 获得最小路径
+     * @return Location
+     * */
+    public Location getMinLocation(){
+        return (Location) location.get(min);
     }
 }
