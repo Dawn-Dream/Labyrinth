@@ -40,6 +40,10 @@ public class AutoMain {
             }
         }
         Auto auto = new Auto(map , in_x , in_y , out_x , out_y);
-        System.out.println(auto.getMinLocation().popX() + "  " + auto.getMinLocation().popY());
+        System.out.println("---------------\n");
+        int size = auto.getMinLocation().getSize() - 1;
+        for (int i = 0; i <= size; i++) {
+            System.out.println("[" + auto.getMinLocation().popX() + " " + auto.getMinLocation().popY() + "]");
+        }
     }
 }

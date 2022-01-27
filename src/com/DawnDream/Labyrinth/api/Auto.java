@@ -7,8 +7,8 @@ import java.util.Stack;
 public class Auto {
     public static boolean a[][] , v[][];
     public static int startX , startY , endX , endY , step = 0 , min = 99999999;
-    public static Map location = new HashMap();
-    public static Location nowLocation = new Location();
+    public static Map<Integer, Location> location = new HashMap();
+    public Location nowLocation = new Location();
 
     /**
      * 构造函数
@@ -33,7 +33,6 @@ public class Auto {
                 vi = false;
             }
         }
-        location.put(min , new Location());
         auto(in_x , in_y , 0);
     }
 
@@ -42,16 +41,17 @@ public class Auto {
      * */
     private void auto(int dx , int dy , int step){
         v[dx][dy] = true;
-        nowLocation.push(dy , dx);
+        nowLocation.push(dx , dy);
         System.out.println(dx + " " + dy);
         if (dx == endX && dy == endY) {
             if (step < min) {
                 min = step;
-                location.put(min , nowLocation);
-                nowLocation.popX();
-                nowLocation.popY();
-                return;
+                location.put(step , nowLocation);
+                System.out.println(step);
             }
+            nowLocation.popX();
+            nowLocation.popY();
+            return;
         }
 
         int y[] = {1 , 0 , -1 , 0} , x[] = {0 , 1 , 0 , -1};
@@ -78,6 +78,6 @@ public class Auto {
      * @return Location
      * */
     public Location getMinLocation(){
-        return (Location) location.get(min);
+        return location.get(min);
     }
 }
